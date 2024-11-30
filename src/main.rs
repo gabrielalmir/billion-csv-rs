@@ -43,7 +43,7 @@ fn generate_billion_file(file_path: &str) -> io::Result<()> {
 
     let max_lines = 1_000_000_000;
     let batch_size = 100_000;
-    let num_threads = 64;
+    let num_threads = num_cpus::get();
     let lines_per_thread = max_lines / num_threads;
 
     let (sender, receiver) = mpsc::sync_channel(num_threads * 2);
